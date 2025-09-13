@@ -1,8 +1,9 @@
 name: Wake Streamlit App
 
+# Trigger every 15 minutes (optimal to prevent Streamlit sleep)
 on:
   schedule:
-    - cron: '*/2 * * * *'   # every 2 minutes
+    - cron: '*/15 * * * *'   # every 15 minutes UTC
   workflow_dispatch:         # allows manual trigger
 
 jobs:
@@ -24,4 +25,5 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run wake script
-        run: python wake.py
+        run: |
+          python wake.py
